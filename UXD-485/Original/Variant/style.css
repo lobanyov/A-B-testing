@@ -3,7 +3,7 @@
   width: 100%;
   height: 85px;
   color: #0f0f0f;
-	background-color: #ffd100;
+  background-color: #ffd100;
 }
 
 .experiment-UXD-485-banner-wrapper {
@@ -11,18 +11,18 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-	max-width: 1200px;
+  max-width: 1200px;
   height: 85px;
   margin: 0 auto;
 }
 
 .experiment-UXD-485-buttons-wrapper {
-	display: flex;
- 	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .experiment-UXD-485-paragraph {
-	width: 55%;
+  width: 55%;
   margin-left: 10px;
   font-size: 14px;
   font-weight: bold;
@@ -31,7 +31,7 @@
 
 .experiment-UXD-485-confirm-btn,
 .experiment-UXD-485-reject-btn {
-	height: 30px;
+  height: 30px;
   padding: 0 15px;
   font-size: .75rem;
   font-weight: bold;
@@ -42,7 +42,7 @@
 }
 
 .experiment-UXD-485-reject-btn {
-	margin-left: 20px;
+  margin-left: 20px;
 }
 
 .experiment-UXD-485-confirm-btn:hover,
@@ -74,25 +74,25 @@
 }
 
 .experiment-UXD-485-close-btn:hover { 
-	opacity: 0.6;
+  opacity: 0.6;
   cursor: pointer;
 }
 
 .experiment-UXD-485-crosshair {
- margin-bottom: 2px;
+  margin-bottom: 2px;
 }
 
 @media screen and (max-width: 1065px) {
   .experiment-UXD-485-banner {
-  	height: auto;
+    height: auto;
   }
   
-	.experiment-UXD-485-banner-wrapper {
+  .experiment-UXD-485-banner-wrapper {
     position: relative;
     flex-direction: column;
     width: 96%;
     height: auto;
-	}
+  }
   
   .experiment-UXD-485-paragraph {
     display: flex;
@@ -108,7 +108,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-	}
+  }
   
   .experiment-UXD-485-confirm-btn,
   .experiment-UXD-485-reject-btn {
@@ -117,10 +117,10 @@
   
   .experiment-UXD-485-reject-btn {
     margin: 7px 0;
-	}
+  }
   
   .experiment-UXD-485-close-btn {
-  	position: absolute;
+    position: absolute;
     right: 0;
     top: 10px;
     margin-right: 0;
