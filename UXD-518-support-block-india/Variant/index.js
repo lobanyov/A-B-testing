@@ -115,7 +115,7 @@ function init() {
 
   // Add styles to elements untill the support block is added to DOM tree
   supportBlock.style.cssText = 'display: flex; background: #fff; width: 100%;' +
-    ' margin-top: 40px; outline: 1px solid #e7e6e6';
+    ' margin-top: 40px; margin-bottom: -15px; outline: 1px solid #e7e6e6';
   var itemHelpDescription = supportBlock.querySelector('.UXD-508-item-help-desc');
   var helpDescriptionTitle = supportBlock.querySelector('.UXD-508-title-help-desc');
   var supportItems = supportBlock.querySelectorAll('.UXD-508-support-item');
