@@ -1,0 +1,14 @@
+.single-result .result-main-range > a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 4px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #4280e6;
+  background-color: #f0f0f0;
+}
+
+.link-arrow.se-icon-arrow2_right {
+  display: none;
+}

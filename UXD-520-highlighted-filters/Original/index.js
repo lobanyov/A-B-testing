@@ -1,5 +1,7 @@
 if (document.readyState !== 'loading') {
-  // case 1
-  } else {
-  // case 2
-  }
+  // Case 1
+} else {
+  window.addEventListener('load', function() {
+    // Case 2
+  });
+}
