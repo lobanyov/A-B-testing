@@ -1,7 +1,12 @@
 if (document.readyState !== 'loading') {
-  // Case 1
+  init();
 } else {
   window.addEventListener('load', function() {
-    // Case 2
+    init();
   });
+}
+
+function init() {
+  var filterContainer = document.querySelector('.side-bar__content.js-sidebar-content');
+  filterContainer.classList.add('UXD-520-filter-container');
 }
