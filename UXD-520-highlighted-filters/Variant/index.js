@@ -100,7 +100,6 @@ function getCookie(name) {
 }
 
 function init() {
-  if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < 980) return;
   var filterContainer = document.querySelector('.side-bar__content.js-sidebar-content');
   filterContainer.classList.add('UXD-520-filter-container');
 

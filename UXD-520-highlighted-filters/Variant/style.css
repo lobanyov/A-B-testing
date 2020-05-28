@@ -103,3 +103,11 @@ html {
   /* z-index: -1; */
   box-shadow: -3px 4px 6px -4px rgba(0,0,0,0.5);
 }
+
+@media screen and (max-width: 979px) {
+  .UXD-520-tip,
+  .UXD-520-overlay,
+  .UXD-520-header-overlay {
+    display: none;
+  }
+}
