@@ -2,32 +2,6 @@
   visibility: hidden;
 }
 
-.sdl-header-se_seamless-banner.js-seamless-banner {
-  background-color: #ffd100;
-  color: #0f0f0f;
-}
-
 .sdl-header-se_seamless-banner.js-seamless-banner.js-notification-banner {
   visibility: hidden;
-}
-
-.sdl-header-se_seamless-banner-btn.se-btn-secondary-small-white {
-  color: #0f0f0f;
-}
-
-.sdl-header-se_seamless-banner .seamless-banner-modify-btn {
-  color: #0f0f0f;
-}
-
-.sdl-header-se_seamless-banner-btn.se-btn-secondary-small-white:active {
-  background-color: #0f0f0f;
-  color: #fff;
-}
-
-button.sdl-header-se_seamless-banner-close-btn {
-  color: #0f0f0f;
-}
-
-.sdl-header-se_seamless-banner-close-btn:hover {
-  opacity: 0.6;
 }
