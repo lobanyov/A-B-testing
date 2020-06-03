@@ -28,13 +28,18 @@ function customizeBanner() {
 
   closeButton.addEventListener('click', function() {
     if (getCookie('experiment_484_count') < 3) {
-      document.cookie = 'experiment_484_count=' + (+getCookie('experiment_484_count') + 1);
+      document.cookie = 'experiment_484_count=' + (+getCookie('experiment_484_count') + 1) + '; path=/;';
       document.cookie = 'non_customized_banner=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;';
       isBannerWasDisplayed = true;
       // resetStickyHeaderHeight();
       window.dispatchEvent(new Event('resize'));
+    } else if (getCookie('experiment_484_count') === undefined) {
+      document.cookie = 'experiment_484_count=0; path=/;';
+      document.cookie = 'non_customized_banner=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;';
+      isBannerWasDisplayed = true;
+      window.dispatchEvent(new Event('resize'));
     } else {
-      document.cookie = 'experiment_484_count=0';
+      document.cookie = 'experiment_484_count=0; path=/;';
       resetNonCustomizedBannerCookie();
       // resetStickyHeaderHeight();
       window.dispatchEvent(new Event('resize'));

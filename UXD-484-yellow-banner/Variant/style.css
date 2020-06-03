@@ -5,3 +5,8 @@
 .sdl-header-se_seamless-banner.js-seamless-banner.js-notification-banner {
   visibility: hidden;
 }
+
+.sdl-header-se_seamless-banner-content > h4,
+.sdl-header-se_seamless-banner-content > p {
+  font-size: 15px;
+}
