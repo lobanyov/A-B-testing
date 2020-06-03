@@ -76,10 +76,11 @@ function addListeners(nodes) {
     setDefaultShadowForFilters();
   });
 
-  document.body.addEventListener('click', function(e) {
+  document.documentElement.addEventListener('click', function(e) {
     if (e.target.closest('.UXD-520-tip')) return;
     nodes.overlay.classList.add('hide');
     nodes._overlay.classList.add('hide');
+    nodes.tip.classList.add('hide');
     // Unset box-shadow for all filter level 1 boxes
     setDefaultShadowForFilters();
   });
@@ -102,9 +103,7 @@ function getCookie(name) {
 function init() {
   var filterContainer = document.querySelector('.side-bar__content.js-sidebar-content');
   filterContainer.classList.add('UXD-520-filter-container');
-
-  // Don't show the overlay & message box for all regular users if SECOUNTRYCODE cookie isn't set
-  if (getCookie('SECONTRYCODE') || getCookie('non_overlay')) return;
+  if (getCookie('non_overlay')) return;
   setTimeout(insertNodes, 1000);
-  document.cookie = 'non_overlay=true';
+  document.cookie = 'non_overlay=true; path=/;';
 }
