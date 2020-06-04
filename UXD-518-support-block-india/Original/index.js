@@ -6,7 +6,10 @@ function addClassesToSupportLinks() {
 }
 
 function addClassesToTips() {
-  var tipsSection = document.querySelector('[data-tpl-name="Content - Flexible Blocks"]');
+  var tipsSections = document.querySelectorAll('[data-tpl-name="Content - Flexible Blocks"]');
+  if (!tipsSections.length) return;
+  var tipsSection = Array.from(tipsSections).pop();
+  if (!tipsSection.closest('.tips-distributor')) return;
   var tips = tipsSection.querySelectorAll('[class^="sdl-content-flexible-blocks_column se-col-md-"]');
 
   tips.forEach(function(el) {

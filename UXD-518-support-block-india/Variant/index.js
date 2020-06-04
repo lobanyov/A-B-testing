@@ -37,13 +37,17 @@ function createMobileSupportBlock(supportBlock) {
   var mobileHelpDescriptionTitle = mobileSupportBlock.querySelector('.UXD-508-title-help-desc');
   var mobileHelpDescriptionSpan = mobileItemHelpDescription.querySelector('span');
   var mobileSupportItems = mobileSupportBlock.querySelectorAll('.UXD-508-support-item');
-  mobileHelpDescriptionTitle.style.marginTop = '15px';
+  mobileHelpDescriptionTitle.style.cssText = 'margin-top: 15px; font-size: 22px; font-weight: 700; color: #333;';
   mobileHelpDescriptionSpan.style.marginLeft = '10px';
   mobileHelpDescriptionSpan.style.textAlign = 'center';
   mobileItemHelpDescription.style.cssText = 'display: flex; flex-direction: column; justify-content: center; ' +
     'align-items: center; width: 50%; height: 230px; border-bottom: 1px solid #e7e6e6;'; // border: 1px solid #e7e6e6;
-  mobileSupportBlock.style.cssText = 'flex-wrap: wrap; align-items: center; margin-top: 30px; ' +
+  mobileSupportBlock.style.cssText = 'flex-wrap: wrap; align-items: center; margin-bottom: 30px; ' +
     'outline: 1px solid #e7e6e6; background: #fff;';
+
+  // Add margin-top for /work/solutions/
+  if (location.pathname.indexOf('/work/solutions/') > -1 && !document.querySelector('.tips-distributor')) mobileSupportBlock.style.marginTop = '30px';
+
   mobileSupportItems.forEach(function(item, i) {
     item.style.cssText = 'width: 50%; height: 230px; border-bottom: 1px solid #e7e6e6;'; // border: 1px solid #e7e6e6;
     var supportLink = item.querySelector('a');
@@ -74,7 +78,11 @@ function showSupportBlock(mobile, desktop) {
 }
 
 function addClassesToTips() {
-  var tipsSection = document.querySelector('[data-tpl-name="Content - Flexible Blocks"]');
+  var tipsSections = document.querySelectorAll('[data-tpl-name="Content - Flexible Blocks"]');
+  if (!tipsSections.length) return;
+  var tipsSection = Array.from(tipsSections).pop(); // Obtain the last flexible block on the page
+  if (!tipsSection.closest('.tips-distributor')) return;
+
   var tips = tipsSection.querySelectorAll('[class^="sdl-content-flexible-blocks_column se-col-md-"]');
 
   tips.forEach(function(el) {
@@ -83,13 +91,16 @@ function addClassesToTips() {
 }
 
 function init() {
-  var tipsBlock = document.querySelector('.tips-distributor');
+  var tipsBlocks = document.querySelectorAll('[data-tpl-name="Content - Flexible Blocks"]');
+  if (!tipsBlocks.length) return;
+  var tipsBlock = Array.from(tipsBlocks).pop(); // Obtain the last flexible container
+  
   var stickyBar = document.querySelector('.sdl-content-sticky-bar');
   stickyBar.style.display = 'none';
 
   var fragment = '<li class="UXD-508-item-help-desc">' +
     '<h2 class="UXD-508-title-help-desc">Need help?</h2>' +
-    '<span style="color: #333; margin: 10px 10px 10px 0;">' + supportTextContent[5] + '</span>' +
+    '<span style="font-size: 13px; color: #333; margin: 10px 10px 10px 0;">' + supportTextContent[5] + '</span>' +
     '</li>';
 
   var supportBlock = document.createElement('ul');
@@ -103,8 +114,8 @@ function init() {
             '<img style="width: 40px; height: 40px;' +
             ' filter: invert(49%) sepia(69%) saturate(417%) hue-rotate(153deg) brightness(101%) contrast(94%);"' +
             ' src="https://www.se.com/uk/en/assets/607/media/60884/SE_facts_lightgreen_Headset_1.svg">' +
-            '<span style="color: #333; font-weight: bold; text-align: center; margin-top: 10px;">' + el + '</span>' +
-            '<span style="color: #333; margin-top: 10px; text-align: center">' + supportTextContent[i] + '</span>' +
+            '<span style="color: #333; font-size: 13px; font-weight: bold; text-align: center; margin-top: 10px;">' + el + '</span>' +
+            '<span style="color: #333; font-size: 13px; margin-top: 10px; text-align: center">' + supportTextContent[i] + '</span>' +
           '</a>' +
         '</li>';
     } else {
@@ -113,8 +124,8 @@ function init() {
           '<a class="UXD-508-support-link" href="' + supportIconsLinks[i] +
             '" title="' + supportDescriptionContent[i] + '">' +
             '<svg style="width: 40px; height: 40px;"><use xlink:href="' + supportIconsSVG[i] + '"></use></svg>' +
-            '<span style="color: #333; font-weight: bold; text-align: center; margin-top: 10px;">' + el + '</span>' +
-            '<span style="color: #333; margin-top: 10px; text-align: center">' + supportTextContent[i] + '</span>' +
+            '<span style="color: #333; font-size: 13px; font-weight: bold; text-align: center; margin-top: 10px;">' + el + '</span>' +
+            '<span style="color: #333; font-size: 13px; margin-top: 10px; text-align: center">' + supportTextContent[i] + '</span>' +
           '</a>' +
         '</li>';
     }
@@ -124,7 +135,7 @@ function init() {
 
   // Add styles to elements untill the support block is added to DOM tree
   supportBlock.style.cssText = 'display: flex; background: #fff; width: 100%;' +
-    ' margin-top: 40px; margin-bottom: -15px; outline: 1px solid #e7e6e6';
+    ' margin-bottom: 20px; outline: 1px solid #e7e6e6';
   var itemHelpDescription = supportBlock.querySelector('.UXD-508-item-help-desc');
   var helpDescriptionTitle = supportBlock.querySelector('.UXD-508-title-help-desc');
   var supportItems = supportBlock.querySelectorAll('.UXD-508-support-item');
@@ -133,7 +144,7 @@ function init() {
     .cssText = 'width: 25%; padding-left: 15px; border-right: 1px solid #e7e6e6; display: flex;' +
     ' justify-content: center; flex-direction: column;';
   helpDescriptionTitle.style
-    .cssText = 'padding: 0; margin: 0; font-weight: bold;';
+    .cssText = 'padding: 0; margin: 0; font-size: 22px; font-weight: bold; color: #333;';
 
   supportItems.forEach(function(item, i) { 
     item.style.cssText= 'width: 196px; border-right: 1px solid #e7e6e6; display: flex;' +
@@ -144,7 +155,6 @@ function init() {
       ' align-items: center; width: 100%; height: 100%; padding: 20px 10px 10px';
   });
 
-  var mainSection = document.querySelector('.sdl-main-global');
   var _supportBlockWrapper = '<div class="se-container">' +
       '<div class="se-row">' +
         '<div class="se-col UXD-508">' +
@@ -154,7 +164,7 @@ function init() {
 
   var mobileSupportBlock = createMobileSupportBlock(supportBlock);
   // Add support block within DOM tree
-  mainSection.insertAdjacentHTML('afterend', _supportBlockWrapper);
+  tipsBlock.insertAdjacentHTML('beforebegin', _supportBlockWrapper);
   document.querySelector('.se-col.UXD-508').insertAdjacentElement('afterbegin', mobileSupportBlock);
 
   var seContainer = document.createElement('div');
