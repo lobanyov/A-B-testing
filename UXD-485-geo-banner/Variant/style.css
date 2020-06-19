@@ -2,8 +2,8 @@
   order: 2;
   width: 100%;
   height: 85px;
-  color: #0f0f0f;
-  background-color: #ffd100;
+  color: #fff;
+  background-color: #42b4e6;
 }
 
 .experiment-UXD-485-banner-wrapper {
@@ -24,21 +24,21 @@
 .experiment-UXD-485-paragraph {
   width: 55%;
   margin-left: 10px;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: 700;
   line-height: 20px;
 }
 
 .experiment-UXD-485-confirm-btn,
 .experiment-UXD-485-reject-btn {
   height: 30px;
-  padding: 0 15px;
+  padding: 0 10px;
   font-size: .75rem;
-  font-weight: bold;
+  font-weight: 700;
   line-height: 1.667;
-  color: #0f0f0f;
-  background-color: #ffd100;
-  border: 1px solid #0f0f0f;
+  color: #fff;
+  background-color: #42b4e6;
+  border: 1px solid #fff;
 }
 
 .experiment-UXD-485-reject-btn {
@@ -47,14 +47,14 @@
 
 .experiment-UXD-485-confirm-btn:hover,
 .experiment-UXD-485-reject-btn:hover {
-  outline: 1px solid #0f0f0f;
+  outline: 1px solid #fff;
   cursor: pointer;
 }
 
 .experiment-UXD-485-confirm-btn:active,
 .experiment-UXD-485-reject-btn:active {
   color: #fff;
-  background-color: #0f0f0f;
+  background-color: #fff;
 }
 
 .experiment-UXD-485-close-btn {
@@ -67,14 +67,14 @@
   margin-left: 55px;
   margin-right: 10px;
   font-size: 15px;
-  color: #ffd100;
-  background-color: #0f0f0f;
+  color: #42b4e6;
+  background-color: #fff;
   border: none;
   border-radius: 50%;
 }
 
 .experiment-UXD-485-close-btn:hover { 
-  opacity: 0.6;
+  opacity: 0.8;
   cursor: pointer;
 }
 
