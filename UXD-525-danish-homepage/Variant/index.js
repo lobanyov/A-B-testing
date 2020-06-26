@@ -34,13 +34,17 @@ var config = {
     this.nodes.rectangularImages.forEach(function(img) {
       img.style.display = 'none';
     });
-    
+
+    // Wrap image into link
+    var imgLinkWrapper = document.createElement('a');
     var img = document.createElement('img');
-    img.classList.add('uxd-525-image');
-    img.src = 'https://www.se.com/dk/da/assets/529/media/39068/1200x2/Web1-find_it_fast_IC-1440x702.jpg';
-    this.nodes.titleSection.insertAdjacentElement('afterend', img);
+
+    imgLinkWrapper.href = this.nodes.descriptionLink.href;
     img.style.width = '100%';
     img.classList.add('uxd-525-secondary');
+    
+    imgLinkWrapper.insertAdjacentElement('afterbegin', img);
+    this.nodes.titleSection.insertAdjacentElement('afterend', imgLinkWrapper);
   },
 
   init: function() {
