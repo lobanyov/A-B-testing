@@ -1,4 +1,6 @@
 var config = {
+  imgSrc: 'https://www.se.com/dk/da/assets/529/media/39068/1200x2/Web1-find_it_fast_IC-1440x702.jpg',
+
   selectors: {
     titleSectionSelector: '.sdl-heading-section-title-h3',
     titleSelector: '.se-font-title3 > p',
@@ -25,7 +27,8 @@ var config = {
       'afterbegin', 'Se vores digitale værktøjer og brug mindre tid på at lede efter svar - og mere tid på din virksomhed.'
     );
     this.nodes.descriptionLink.insertAdjacentHTML('beforebegin', '<br>');
-    this.nodes.descriptionLink.firstChild.data = 'Se det nu';
+    this.nodes.descriptionLink.firstChild.data = 'Læs mere her';
+    this.nodes.descriptionLink.title = 'Se alle support';
     this.nodes.descriptionLink.href = 'https://www.se.com/dk/da/work/support/find-it-fast/';
     this.nodes.descriptionLink.classList.add('uxd-525-primary');
     this.nodes.smallSquareImages.forEach(function(img) {
@@ -38,8 +41,9 @@ var config = {
     // Wrap image into link
     var imgLinkWrapper = document.createElement('a');
     var img = document.createElement('img');
-
+    img.src = this.imgSrc;
     imgLinkWrapper.href = this.nodes.descriptionLink.href;
+    imgLinkWrapper.title = 'Se alle support';
     img.style.width = '100%';
     img.classList.add('uxd-525-secondary');
     
