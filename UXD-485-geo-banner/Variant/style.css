@@ -29,6 +29,11 @@
   line-height: 20px;
 }
 
+.experiment-UXD-485-paragraph i {
+  font-style: italic;
+  letter-spacing: 3px;
+}
+
 .experiment-UXD-485-confirm-btn,
 .experiment-UXD-485-reject-btn {
   height: 30px;
@@ -101,6 +106,10 @@
     width: 80%;
     margin-top: 15px;
     margin-bottom: 10px;
+  }
+
+  .experiment-UXD-485-paragraph i {
+    display: inline-flex;
   }
   
   .experiment-UXD-485-buttons-wrapper {

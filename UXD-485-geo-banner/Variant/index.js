@@ -33,13 +33,13 @@ function defineVariables() {
   rejectButton.textContent = 'I prefer to stay on the global site';
   crosshair.textContent = 'x';
   
-  var locationLabel = '[' + getUserCountryCode() + ']';
+  var locationLabel = getUserCountryCode();
   var bannerTextContent = '<p class="experiment-UXD-485-paragraph">' +
-    'This is the global version of the Schneider Electric site.<br>' +
-    'You would have a better chance of finding what you’re looking for on the ' +
+    '<span>This is the global version of the Schneider Electric site.<br>' +
+    'You would have a better chance of finding what you’re looking for on the ' + '<i>"</i>' +
     locationLabel +
-    ' site.' +
-    '</p>';
+    ' site' + '<i>"</i>' + '.' +
+    '</span></p>';
   
   banner.className = 'experiment-UXD-485-banner';
   wrapper.className = 'experiment-UXD-485-banner-wrapper';
@@ -146,58 +146,3 @@ try {
 } catch(e) {
   console.warn(e.name + ': Failed to load a geo-banner to this page');
 }
-
-// var USA_COUNTRY_CODE = 'US';
-// var CANADA_COUNTRY_CODE = 'CA';
-// var UNITED_KINGDOM_COUNTRY_CODE = 'UK';
-
-// function initGeoBanner() {
-//   if (getCookie('non_geolocation_banner')) return;
-//   var countryCode = getUserCountryCode();
-
-//   if (
-//     countryCode === USA_COUNTRY_CODE ||
-//     countryCode === CANADA_COUNTRY_CODE ||
-//     countryCode === UNITED_KINGDOM_COUNTRY_CODE
-//   ) {
-//     var elements = defineVariables();
-//     addBannerToHeader(elements);
-//     addListenersToRejectButtons(elements);
-//     addListenerToConfirmButton(elements);
-//   }
-// }
-
-// function setStickyHeaderHeight() {
-//   var stickyHeader = document.querySelector('.sdl-header-global.js-sticky.js-header-global');
-//   var verticalWidget = document.querySelector('.sdl-application-social-media-share-vertical.sdl-is-two-columns');
-
-//   if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) > 1200) {
-//     stickyHeader.style.height = '219px';
-//     verticalWidget.style.top = '219px';
-//   } else if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < 1200 &&
-//       Math.max(document.documentElement.clientWidth, window.innerWidth || 0) > 760) {
-//     stickyHeader.style.height = '252px';
-//   } else if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < 760 &&
-//       Math.max(document.documentElement.clientWidth, window.innerWidth || 0) > 370) {
-//     stickyHeader.style.height = '252px';
-//   } else {
-//     stickyHeader.style.height = '269px';
-//   }
-// }
-
-// function resetStickyHeaderHeight() {
-//   var stickyHeader = document.querySelector('.sdl-header-global.js-sticky.js-header-global');
-//   var verticalWidget = document.querySelector('.sdl-application-social-media-share-vertical.sdl-is-two-columns');
-
-//   if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) > 1200) {
-//     stickyHeader.style.height = '134px';
-//     if (verticalWidget) {
-//       verticalWidget.style.top = '134px';
-//     }
-//   } else if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < 1200 &&
-//     	Math.max(document.documentElement.clientWidth, window.innerWidth || 0) > 760) {
-//     stickyHeader.style.height = '113px';
-//   } else {
-//     stickyHeader.style.height = '90px';
-//   }
-// }
