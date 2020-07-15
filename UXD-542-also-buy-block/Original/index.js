@@ -28,8 +28,10 @@ var UXD542 = {
       this.addClassesToAreas();
     } else {
       window.addEventListener('load', function() {
-        this.getNodes();
-        this.addClassesToAreas();
+        var _this = this;
+
+        _this.getNodes();
+        _this.addClassesToAreas();
       });
     }
   },
