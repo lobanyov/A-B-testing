@@ -5,15 +5,16 @@ function setObserverToList() {
   observer.observe(resultsList, {
     childList: true,
     subtree: true,
-  });	
+  });
 }
 
 function setClassesToLinks() {
   var rangeLinks = document.querySelectorAll('.single-result .result-main-range > a');
   var resultsList = document.querySelector('.results:last-child');
-  var resultCards = resultsList.querySelectorAll('.single-result > .card-body');
-
-  // var productLinks = document.querySelectorAll('.single-result .card-body > .card-body__info > a');
+  var resultCards = Array.from(resultsList.querySelectorAll('.single-result > .card-body'))
+    .filter(function(card) {
+      return card.querySelector('a').href.indexOf('/product/') > -1;
+    });
 
   rangeLinks.forEach(function(link) {
     if (link.classList.contains('experiment-uxd-476-range')) return;  
