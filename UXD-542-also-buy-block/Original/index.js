@@ -2,7 +2,7 @@ var UXD542 = {
   selectors: {
     documentsAreaSelector: '.pdfs.highlighted-documents__list.inner-wrapper',
     tabsAreaSelector: 'nav.pdp-bar__tabs',
-    promotedItemsSelector: '.cloneNode_forCustAlsoBuy .rel-prod-card',
+    promotedItemsSelector: '.rel-prod-card',
   },
 
   getNodes: function() {
@@ -16,7 +16,7 @@ var UXD542 = {
   addClassesToAreas: function() {
     this.nodes.tabsArea.classList.add('UXD-542-clickable-area');
     this.nodes.documentsArea.classList.add('UXD-542-clickable-area');
-
+    
     this.nodes.promotedItems.forEach(function(el) {
       el.classList.add('UXD-542-clickable-promoted-area');
     });
@@ -27,9 +27,9 @@ var UXD542 = {
       this.getNodes();
       this.addClassesToAreas();
     } else {
-      window.addEventListener('load', function() {
-        var _this = this;
+      var _this = this;
 
+      window.addEventListener('load', function() {
         _this.getNodes();
         _this.addClassesToAreas();
       });
