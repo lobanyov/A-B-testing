@@ -30,9 +30,11 @@ var config = {
       this.getNodes();
       this.applyChanges();
     } else {
+      var _this = this;
+
       window.addEventListener('load', function() {
-        this.getNodes();
-        this.applyChanges();
+        _this.getNodes();
+        _this.applyChanges();
       });
     }
   }

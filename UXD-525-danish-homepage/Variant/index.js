@@ -59,7 +59,6 @@ var config = {
       var _this = this;
 
       window.addEventListener('load', function() {
-        
         _this.getNodes();
         _this.applyChanges();
       });
