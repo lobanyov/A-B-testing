@@ -17,9 +17,24 @@ var UXD542 = {
   },
 
   moveSectionDown: function() {
+    var imgSources = [];
     var relatedProductsClone = this.nodes.relatedProducts && this.nodes.relatedProducts.cloneNode(true);
 
-    if (relatedProductsClone) relatedProductsClone.classList.add('cloneNode_forCustAlsoBuy');
+    this.nodes.relatedProducts.querySelectorAll('img').forEach(function(el) {
+      if (el.dataset.src) {
+        imgSources.push(el.dataset.src);
+      } else {
+        imgSources.push(el.src);
+      }
+    });
+
+    if (relatedProductsClone) {
+      relatedProductsClone.classList.add('cloneNode_forCustAlsoBuy');
+      relatedProductsClone.querySelectorAll('img').forEach(function(el, i) {
+        el.src = imgSources[i];
+      });
+    }
+
     this.nodes.productWrapper.append(relatedProductsClone);
   },
 
