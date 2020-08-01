@@ -1,14 +1,4 @@
 var UXD544 = {
-  config: {
-    formFieldsStates: {
-      email: null,
-      name: null,
-      password: null,
-    },
-    isCorrectFields: false,
-    amoutOfCorrectFields: 3,
-  },
-
   selectors: {
     emailFormFieldSelector: '#L1 > div:first-child',
     nameFormFieldSelector: '#L1 > div:nth-child(2)',
