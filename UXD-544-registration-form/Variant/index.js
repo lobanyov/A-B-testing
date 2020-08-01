@@ -19,12 +19,10 @@ var UXD544 = {
     blockDescriptionSelector: '.m-bottom110 > div:nth-child(7)',
     recaptchaSelector: '.m-bottom110 > div:nth-child(8)',
     registerBtnSelector: '.form-group.btn-container',
-    passwordInputSelector: '.form-group.has-feedback input',
   },
 
   getInitialNodes: function() {
     this.nodes = {
-      locationFormField: document.querySelector(this.selectors.locationFormFieldSelector),
       companyFormField: document.querySelector(this.selectors.companyFormFieldSelector),
       businessTypeFormField: document.querySelector(this.selectors.businessTypeFormFieldSelector),
       blockDescription: document.querySelector(this.selectors.blockDescriptionSelector),
@@ -37,12 +35,13 @@ var UXD544 = {
     this.nodes.emailFormField = document.querySelector(this.selectors.emailFormFieldSelector);
     this.nodes.nameFormField = document.querySelector(this.selectors.nameFormFieldSelector);
     this.nodes.passwordFormField = document.querySelector(this.selectors.passwordFormFieldSelector);
-    this.nodes.passwordInput = document.querySelector(this.selectors.passwordInputSelector);
+    this.nodes.locationFormField = document.querySelector(this.selectors.locationFormFieldSelector);
 
     this.formFirstPart = [
       this.nodes.emailFormField,
       this.nodes.nameFormField,
-      this.nodes.passwordFormField
+      this.nodes.passwordFormField,
+      this.nodes.locationFormField
     ];
   },
 
@@ -78,11 +77,11 @@ var UXD544 = {
       'disabled'
     );
     this.nodes.continueBtn.setAttribute('type', 'submit');
-    this.nodes.continueBtn.setAttribute('value', 'Continue');
+    this.nodes.continueBtn.setAttribute('value', 'Next');
 
     flexDiv.append(this.nodes.continueBtn);
     buttonWrapper.append(flexDiv);
-    this.nodes.passwordFormField.insertAdjacentElement('afterend', buttonWrapper);
+    this.nodes.locationFormField.insertAdjacentElement('afterend', buttonWrapper);
 
     var cb = function() {
       if (this.classList.contains('disabled')) return;
@@ -110,43 +109,23 @@ var UXD544 = {
   },
 
   checkFieldState: function(e) {
-    var target = e.currentTarget;
     var _this = this;
-    var field = target.querySelector('input');
 
     // Due to error messages will appear after 'change' event is executed
     setTimeout(function() {
       var errorMessages = document.querySelectorAll('.error');
+      var emailField = _this.nodes.emailFormField.querySelector('input');
+      var fullNameField = _this.nodes.nameFormField.querySelector('input');
+      var passwordField = _this.nodes.passwordFormField.querySelector('input');
+      var locationField = _this.nodes.locationFormField.querySelector('select');
 
-      if (field.value && !errorMessages.length) {
-        // TODO: rewrite to switch/case construction
-        if (field.classList.contains('emailClass')) {
-          _this.config.formFieldsStates.email = true;
-        } else if (field.classList.contains('fullNameClass')) {
-          _this.config.formFieldsStates.name = true;
-        } else if (field.classList.contains('passwordClass')) {
-          _this.config.formFieldsStates.password = true;
-        }
-      } else {
-        if (field.classList.contains('emailClass')) {
-          _this.config.formFieldsStates.email = false;
-        } else if (field.classList.contains('fullNameClass')) {
-          _this.config.formFieldsStates.name = false;
-        } else if (field.classList.contains('passwordClass')) {
-          _this.config.formFieldsStates.password = false;
-        }
-      }
-
-      _this.config.isCorrectFields = Object.values(_this.config.formFieldsStates).filter(function(el) {
-        if (el) return el;
-      }).length === _this.config.amoutOfCorrectFields;
-
-      // console.log(_this.config.formFieldsStates);
-      // console.log(Object.values(_this.config.formFieldsStates).filter(function(el) {
-      //   if (el) return el;
-      // }).length);
-
-      if (_this.config.isCorrectFields) {
+      if (
+        emailField.value
+        && fullNameField.value
+        && passwordField.value
+        && locationField.value
+        && !errorMessages.length
+      ) {
         _this.nodes.continueBtn.classList.remove('disabled');
       } else {
         _this.nodes.continueBtn.classList.add('disabled');
