@@ -10,7 +10,6 @@ var UXD544 = {
     recaptchaSelector: '.m-bottom110 > div:nth-child(8)',
     registerBtnSelector: '.form-group.btn-container',
     errorMessageSelector: '.error',
-
   },
 
   getInitialNodes: function() {
@@ -39,6 +38,7 @@ var UXD544 = {
 
   applyChangesForInitialState: function() {
     this.formSecondPart = Object.values(this.nodes);
+    this.nodes.registerBtn.querySelector('input').classList.add('uxd-544-register');
 
     this.formSecondPart.forEach(function(el) {
       el.style.display = 'none';
@@ -77,7 +77,6 @@ var UXD544 = {
 
     var cb = function() {
       if (this.classList.contains('disabled')) return;
-
       this.style.display = 'none';
 
       _this.formFirstPart.forEach(function(el) {
@@ -87,6 +86,13 @@ var UXD544 = {
       _this.formSecondPart.forEach(function(el) {
         el.style.display = 'block';
       });
+
+      var paragraph = document.createElement('p');
+      paragraph.innerHTML = 'Please provide your company information';
+      paragraph.classList.add('text-center', 'social-text');
+      paragraph.style.cssText = 'font-weight: 400; margin-bottom: 20px';
+      _this.nodes.companyFormField.insertAdjacentElement('beforebegin', paragraph);
+      // _this.nodes.registerBtn.querySelector('input').value = 'Create your account';
     };
 
     this.nodes.continueBtn.addEventListener('click', cb);
@@ -105,18 +111,18 @@ var UXD544 = {
 
     // Due to error messages will appear after 'change' event is executed
     setTimeout(function() {
-      var errorMessages = document.querySelectorAll(this.selectors.errorMessageSelector);
+      var errorMessages = document.querySelectorAll(_this.selectors.errorMessageSelector);
       var emailField = _this.nodes.emailFormField.querySelector('input');
       var fullNameField = _this.nodes.nameFormField.querySelector('input');
       var passwordField = _this.nodes.passwordFormField.querySelector('input');
       var locationField = _this.nodes.locationFormField.querySelector('select');
 
       if (
-        emailField.value
-        && fullNameField.value
-        && passwordField.value
-        && locationField.value
-        && !errorMessages.length
+        emailField.value &&
+        fullNameField.value &&
+        passwordField.value &&
+        locationField.value &&
+        !errorMessages.length
       ) {
         _this.nodes.continueBtn.classList.remove('disabled');
       } else {
