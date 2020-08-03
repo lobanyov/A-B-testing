@@ -9,6 +9,8 @@ var UXD544 = {
     blockDescriptionSelector: '.m-bottom110 > div:nth-child(7)',
     recaptchaSelector: '.m-bottom110 > div:nth-child(8)',
     registerBtnSelector: '.form-group.btn-container',
+    errorMessageSelector: '.error',
+
   },
 
   getInitialNodes: function() {
@@ -103,7 +105,7 @@ var UXD544 = {
 
     // Due to error messages will appear after 'change' event is executed
     setTimeout(function() {
-      var errorMessages = document.querySelectorAll('.error');
+      var errorMessages = document.querySelectorAll(this.selectors.errorMessageSelector);
       var emailField = _this.nodes.emailFormField.querySelector('input');
       var fullNameField = _this.nodes.nameFormField.querySelector('input');
       var passwordField = _this.nodes.passwordFormField.querySelector('input');
