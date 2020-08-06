@@ -33,16 +33,6 @@ function createNodes() {
   };
 }
 
-function listenSearch() {
-  var search = document.querySelector('input.sdl-header-se_search-field');
-
-  search.addEventListener('change', function(e) {
-    window.lastSearchValue = e.currentTarget.value;
-  });
-
-  return search.value;
-}
-
 function insertNodes() {
   var nodes = createNodes();
   var documentEl = document.documentElement;
@@ -103,13 +93,17 @@ function setDefaultShadowForFilters() {
     });
 }
 
+// Returns value of cookie
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
 function init() {
   var filterContainer = document.querySelector('.side-bar__content.js-sidebar-content');
   filterContainer.classList.add('UXD-520-filter-container');
-  window.lastSearchValue = listenSearch();
-
-  if (sessionStorage.getItem('searchValue') === window.lastSearchValue) return;
-
+  if (getCookie('non_overlay')) return;
   setTimeout(insertNodes, 1000);
-  sessionStorage.setItem('searchValue', window.lastSearchValue);
+  document.cookie = 'non_overlay=true; path=/;';
 }
