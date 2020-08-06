@@ -1,4 +1,8 @@
 var UXD544 = {
+  config: {
+    countryFieldText: 'Country',
+  },
+
   selectors: {
     emailFormFieldSelector: '#L1 > div:first-child',
     nameFormFieldSelector: '#L1 > div:nth-child(2)',
@@ -10,6 +14,8 @@ var UXD544 = {
     recaptchaSelector: '.m-bottom110 > div:nth-child(8)',
     registerBtnSelector: '.form-group.btn-container',
     errorMessageSelector: '.error',
+    countryLabelSelector: '.usrCountry-label',
+    locationOptionSelector: 'option[selected]',
   },
 
   getInitialNodes: function() {
@@ -19,6 +25,8 @@ var UXD544 = {
       blockDescription: document.querySelector(this.selectors.blockDescriptionSelector),
       recaptcha: document.querySelector(this.selectors.recaptchaSelector),
       registerBtn: document.querySelector(this.selectors.registerBtnSelector),
+      countryLabel: document.querySelector(this.selectors.countryLabelSelector),
+      locationOption: document.querySelector(this.selectors.locationOptionSelector),
     };
   },
 
@@ -37,6 +45,8 @@ var UXD544 = {
   },
 
   applyChangesForInitialState: function() {
+    this.nodes.countryLabel.innerHTML = this.config.countryFieldText + ':';
+    this.nodes.locationOption.innerHTML = this.config.countryFieldText;
     this.formSecondPart = Object.values(this.nodes);
     this.nodes.registerBtn.querySelector('input').classList.add('uxd-544-register');
 
