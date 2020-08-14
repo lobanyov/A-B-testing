@@ -49,3 +49,27 @@ form span > div {
   background-color: #43B4E6;
   border: 0;
 }
+
+.UXD-547-registration-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 40px;
+  margin-top: 20px;
+  font-size: 18px;
+  color: #43B4E6;
+  background: transparent;
+  border: 1px solid #43B4E6;
+}
+
+div.application-group {
+  margin-top: 0;
+}
+
+.UXD-547-help-link {
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #43B4E6;
+  text-decoration: none;
+}
