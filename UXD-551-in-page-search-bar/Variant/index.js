@@ -13,40 +13,44 @@ var UXD551 = {
     };
   },
 
-  applyChanges: function() {
-    var _this = this;
+  createNewNodes: function() {
+    this.nodes.searchContainer = document.createElement('div');
+    this.nodes.searchInput = document.createElement('input');
+    this.nodes.submitBtn = document.createElement('button');
 
-    var searchContainer = document.createElement('div');
-    var searchInput = document.createElement('input');
-    var submitBtn = document.createElement('button');
+    this.nodes.searchContainer.className = 'uxd-search-containter';
+    this.nodes.searchInput.className = 'uxd-search-input';
+    this.nodes.submitBtn.className = 'uxd-submit-button';
 
-    searchContainer.className = 'uxd-search-containter';
-    searchInput.className = 'uxd-search-input';
-    submitBtn.className = 'uxd-submit-button';
+    this.nodes.searchInput.placeholder = 'Search products';
+    this.nodes.submitBtn.textContent = 'Search';
 
-    submitBtn.textContent = 'Submit';
+    this.nodes.searchContainer.append(this.nodes.searchInput, this.nodes.submitBtn);
+    this.nodes.businessLines.insertAdjacentElement('afterend', this.nodes.searchContainer);
+  },
 
-    searchContainer.append(searchInput, submitBtn);
+  addListeners: function() {
+    var cb = function() {
+      this.nodes.headerSearchInput.value = this.nodes.searchInput.value;
+      this.nodes.headerSubmitBtn.click();
+      this.nodes.headerSearchInput.value = '';
+    }.bind(this);
 
-    submitBtn.addEventListener('click', function() {
-      _this.nodes.headerSearchInput.value = searchInput.value;
-      _this.nodes.headerSubmitBtn.click();
-      _this.nodes.headerSearchInput.value = '';
-    });
-
-    this.nodes.businessLines.insertAdjacentElement('afterend', searchContainer);
+    this.nodes.submitBtn.addEventListener('click', cb);
   },
 
   init: function() {
     if (document.readyState !== 'loading') {
       this.getNodes();
-      this.applyChanges();
+      this.createNewNodes();
+      this.addListeners();
     } else {
       var _this = this;
 
       window.addEventListener('load', function() {
         _this.getNodes();
-        _this.applyChanges();
+        _this.createNewNodes();
+        _this.addListeners();
       });
     }
   },
