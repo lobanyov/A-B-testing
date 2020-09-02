@@ -1,4 +1,11 @@
 var UXD551 = {
+  config: {
+    origin: 'https://www.se.com',
+    pathname: '/in/en/search/',
+    queryParams: '?multifilter=Product+Lines',
+    enterCode: 13,
+  },
+
   selectors: {
     headerSearchInputSelector: '.sdl-header-se_search-field',
     headerSubmitBtnSelector: '#submit',
@@ -30,13 +37,30 @@ var UXD551 = {
   },
 
   addListeners: function() {
-    var cb = function() {
-      this.nodes.headerSearchInput.value = this.nodes.searchInput.value;
-      this.nodes.headerSubmitBtn.click();
-      this.nodes.headerSearchInput.value = '';
+    var searchProduct = function() {
+      var searchValue = this.nodes.searchInput.value;
+
+      if (searchValue) {
+        location.assign(
+          this.config.origin + this.config.pathname + searchValue + this.config.queryParams
+        );
+      } else {
+        this.nodes.searchInput.focus();
+      }
     }.bind(this);
 
-    this.nodes.submitBtn.addEventListener('click', cb);
+    this.nodes.submitBtn.addEventListener('click', searchProduct);
+    window.addEventListener('keydown', function(e) {
+      if (
+        e.keyCode === this.config.enterCode &&
+        this.nodes.searchInput.contains(document.activeElement)
+      ) this.nodes.submitBtn.click();
+    }.bind(this));
+  },
+
+  addClassesForMetric: function() {
+    this.nodes.headerSubmitBtn.classList.add('uxd-551-primary');
+    this.nodes.submitBtn.classList.add('uxd-551-primary', 'uxd-551-secondary');
   },
 
   init: function() {
@@ -44,6 +68,7 @@ var UXD551 = {
       this.getNodes();
       this.createNewNodes();
       this.addListeners();
+      this.addClassesForMetric();
     } else {
       var _this = this;
 
@@ -51,6 +76,7 @@ var UXD551 = {
         _this.getNodes();
         _this.createNewNodes();
         _this.addListeners();
+        _this.addClassesForMetric();
       });
     }
   },
