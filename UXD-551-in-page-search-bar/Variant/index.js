@@ -2,7 +2,7 @@ var UXD551 = {
   config: {
     origin: 'https://www.se.com',
     pathname: '/in/en/search/',
-    queryParams: '?multifilter=Product+Lines',
+    queryParams: '?multifilter=Product+Lines%2CDatasheets',
     enterCode: 13,
   },
 
