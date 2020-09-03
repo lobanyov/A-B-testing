@@ -1,0 +1,8 @@
+a:link {
+  color: #1a0dab;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, .10);
+}
+
+a:visited {
+  color: #609;
+}
