@@ -1,16 +1,22 @@
 var UXD541 = {
   selectors: {
-    linksSelector: 'a',
+    linksSelector: 'a:not([class])',
+    seFontLinksSelector: 'a[class|=se-font]',
   },
 
   getNodes: function() {
     this.nodes = {
       links: document.querySelectorAll(this.selectors.linksSelector),
+      seFontLinks: document.querySelectorAll(this.selectors.seFontLinksSelector),
     };
   },
 
   addClassesForMetric: function() {
     this.nodes.links.forEach(function(link) {
+      link.classList.add('uxd-541-primary');
+    });
+
+    this.nodes.seFontLinks.forEach(function(link) {
       link.classList.add('uxd-541-primary');
     });
   },
