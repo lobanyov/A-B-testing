@@ -88,3 +88,56 @@ li.sdl-header-se_mm-l1-item.open .sdl-header-se_mm-l1-section-name:after {
 .sdl-header-se_metabar-item.is-expanded .sdl-header-se_metabar-icon-flag {
   color: #333;
 }
+
+.sdl-header-se_metabar-wrap.js-metabar-wrap {
+  position: relative;
+}
+
+.uxd-570-brands-tab {
+  position: absolute;
+  top: 40px;
+  left: 90px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 240px;
+  height: 140px;
+  background: #fff;
+  border: 1px solid #e7e6e6;
+  z-index: 70;
+}
+
+.uxd-570-brand-tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 119px;
+  height: 69px;
+}
+
+.js-header-metabar-brands > img {
+  align-self: center;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+.uxd-570-brand-tile:first-child {
+	border-bottom: 1px solid #e7e6e6;
+  border-right: 1px solid #e7e6e6;
+}
+
+.uxd-570-brand-tile:nth-child(2) {
+	border-bottom: 1px solid #e7e6e6;
+}
+
+.uxd-570-brand-tile:nth-child(3) {
+	border-right: 1px solid #e7e6e6;
+}
+
+.uxd-570-brand-tile > a {
+	display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
