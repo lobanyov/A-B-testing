@@ -8,7 +8,7 @@ var UXD570 = {
       asco: 'https://raw.githubusercontent.com/lobanyov/A-B-testing/master/UXD-570-multivariate-header/C/assets/ASCO.svg?token=AMWUZCPLDEOPL6F6N6XPPYK7RGEVU',
     },
     brandsURLs: [
-      '#',
+      '',
       'https://www.apc.com/in/en/',
       'https://www.se.com/us/en/brands/squared/',
       'https://www.ascopower.com/in/en/'
@@ -21,6 +21,8 @@ var UXD570 = {
     headerMetabar: '.sdl-header-se_metabar-site-info',
     metabarBtn: '.js-header-metabar-country',
     arrowIcon: '.sdl-header-se_metabar-icon-caret-wrap',
+    brandsTab: '.uxd-570-brands-tab',
+    brandsMetabar: '.sdl-header-se_metabar-site-info-cd:nth-child(2)',
   },
 
   getNodes: function() {
@@ -51,6 +53,23 @@ var UXD570 = {
         brandsButton.setAttribute(key.name, key.value);
       }
     });
+
+    document.addEventListener('click', function(e) {
+      var tab = document.querySelector(this.selectors.brandsTab);
+      if (e.target.closest(this.selectors.brandsMetabar)) return;
+
+      if (!e.target.closest(this.selectors.brandsTab) && tab.classList.contains('open')) {
+        tab.classList.remove('open');
+        metabarItem.classList.remove('active');
+      }
+    }.bind(this));
+
+    metabarItem.addEventListener('click', function(e) {
+      e.currentTarget.classList.toggle('active');
+
+      var tab = document.querySelector(this.selectors.brandsTab);
+      tab.classList.toggle('open');
+    }.bind(this));
 
     brandsButton.append(
       document.createElement('span').innerText = 'Our brands',
@@ -92,6 +111,8 @@ var UXD570 = {
         svgs.forEach(function(svg, i) {
           var brandTile = document.createElement('li');
           brandTile.className = 'uxd-570-brand-tile';
+          if (!i) brandTile.classList.add('selected');
+          
           var link = document.createElement('a');
           link.href = _this.config.brandsURLs[i];
 
