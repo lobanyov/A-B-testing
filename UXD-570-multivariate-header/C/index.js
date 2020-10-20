@@ -1,5 +1,7 @@
 var UXD570 = {
   config: {
+    isMobileSearchSet: false,
+    inputPlaceholder: 'Search on se.com',
     brandsImgURL: 'https://raw.githubusercontent.com/lobanyov/A-B-testing/master/UXD-570-multivariate-header/C/assets/SE_small.svg',
     brandsLogosURLs: {
       schneider: 'https://raw.githubusercontent.com/lobanyov/A-B-testing/master/UXD-570-multivariate-header/C/assets/Schneider.svg?token=AMWUZCIANVSQTOLCGTEHAAC7RGEQM',
@@ -23,6 +25,8 @@ var UXD570 = {
     arrowIcon: '.sdl-header-se_metabar-icon-caret-wrap',
     brandsTab: '.uxd-570-brands-tab',
     brandsMetabar: '.sdl-header-se_metabar-site-info-cd:nth-child(2)',
+    formInput: '.sdl-header-se_search-bar > input',
+    headerSearch: '.sdl-header-se_main',
   },
 
   getNodes: function() {
@@ -32,6 +36,8 @@ var UXD570 = {
       headerMetabar: document.querySelector(this.selectors.headerMetabar),
       metabarBtn: document.querySelector(this.selectors.metabarBtn),
       arrowIcon: document.querySelector(this.selectors.arrowIcon),
+      formInput: document.querySelector(this.selectors.formInput),
+      headerSearch: document.querySelector(this.selectors.headerSearch),
     };
   },
 
@@ -129,18 +135,42 @@ var UXD570 = {
   applyChanges: function() {
     this.createMetabarItem();
     this.createBrandsTab();
+
+    this.nodes.formInput.placeholder = this.config.inputPlaceholder;
+  },
+
+  applyChangesForMobile: function() {
+    var isMobileWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < 720;
+
+    if (isMobileWidth && !this.config.isMobileSearchSet) {
+      var container = document.querySelector('.sdl-header-se_wrap > .se-container');
+      container.insertAdjacentElement('afterend', this.nodes.headerSearch);
+
+      this.config.isMobileSearchSet = true;
+    } else if (!isMobileWidth && this.config.isMobileSearchSet) {
+      var navigation = document.querySelector('.sdl-header-se_btn-nav-wrap');
+      navigation.insertAdjacentElement('afterend', this.nodes.headerSearch);
+
+      this.config.isMobileSearchSet = false;
+    }
   },
 
   init: function() {
     if (document.readyState !== 'loading') {
       this.getNodes();
       this.applyChanges();
+      this.applyChangesForMobile();
+
+      window.addEventListener('resize', this.applyChangesForMobile.bind(this));
     } else {
       var _this = this;
 
       window.addEventListener('load', function() {
         _this.getNodes();
         _this.applyChanges();
+        _this.applyChangesForMobile();
+
+        window.addEventListener('resize', _this.applyChangesForMobile.bind(_this));
       });
     }
   },

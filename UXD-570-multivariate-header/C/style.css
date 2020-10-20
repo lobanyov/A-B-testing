@@ -91,6 +91,10 @@
   text-decoration: none;
 }
 
+.js-header-metabar-brands:focus {
+  outline: none;
+}
+
 @media only screen and (min-width: 1200px) {
   .sdl-header-se_main {
     display: flex;
