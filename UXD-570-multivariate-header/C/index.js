@@ -27,6 +27,8 @@ var UXD570 = {
     brandsMetabar: '.sdl-header-se_metabar-site-info-cd:nth-child(2)',
     formInput: '.sdl-header-se_search-bar > input',
     headerSearch: '.sdl-header-se_main',
+    closeNavBtn: '.js-header-mob-nav-btn-close',
+    mobileMetabar: '.sdl-header-se_mob-nav-metabar-site-info.js-metabar-site-info',
   },
 
   getNodes: function() {
@@ -38,6 +40,8 @@ var UXD570 = {
       arrowIcon: document.querySelector(this.selectors.arrowIcon),
       formInput: document.querySelector(this.selectors.formInput),
       headerSearch: document.querySelector(this.selectors.headerSearch),
+      closeNavBtn: document.querySelector(this.selectors.closeNavBtn),
+      mobileMetabar: document.querySelector(this.selectors.mobileMetabar),
     };
   },
 
@@ -94,7 +98,14 @@ var UXD570 = {
 
         brandsLogo.src = objURL;
         brandsButton.prepend(brandsLogo);
-      });
+
+        var mobileMetabarItem = metabarItem.cloneNode(true);
+        this.nodes.mobileMetabar.append(mobileMetabarItem);
+
+        mobileMetabarItem.addEventListener('click', function() {
+          this.nodes.brandsList.style.display = 'block';
+        }.bind(this));
+      }.bind(this));
   },
 
   createBrandsTab: function() {
@@ -125,6 +136,10 @@ var UXD570 = {
           link.insertAdjacentHTML('afterbegin', svg);
           brandTile.append(link);
           brandsTab.append(brandTile);
+
+          // Put into mobile navigation
+          var mobileBrandTile = brandTile.cloneNode(true);
+          _this.nodes.brandsList.append(mobileBrandTile);
         });
       });
     });
@@ -137,6 +152,48 @@ var UXD570 = {
     this.createBrandsTab();
 
     this.nodes.formInput.placeholder = this.config.inputPlaceholder;
+  },
+
+  replaceCloseButtonOnMobileView: function() {
+    var mobileNavigation = document.querySelector('.sdl-header-se_mob-nav-main');
+    mobileNavigation.append(this.nodes.closeNavBtn);
+  },
+
+  createMobileBrandsTab: function() {
+    var wrapper = document.createElement('div');
+    wrapper.className = 'uxd-570-brands-tab-wrapper';
+
+    var title = document.createElement('p');
+    title.className = 'uxd-570-brands-title';
+    title.textContent = 'Our brands';
+
+    this.nodes.brandsList = document.createElement('ul');
+    this.nodes.brandsList.className = 'uxd-570-brands-list';
+
+    var controlItem = document.createElement('li');
+    controlItem.className = 'uxd-570-control-item';
+
+    var closeBtn = this.nodes.closeNavBtn.cloneNode(true);
+    var arrowIcon = this.nodes.arrowIcon.cloneNode(true);
+
+    var title = document.createElement('span');
+    title.className = 'uxd-570-control-title';
+    title.textContent =  'Our brands';
+
+    controlItem.append(arrowIcon, title, closeBtn);
+    this.nodes.brandsList.append(controlItem);
+
+    var navigation = document.querySelector('.sdl-header-se_mob-nav-main');
+    navigation.append(this.nodes.brandsList);
+
+    closeBtn.addEventListener('click', function() {
+      this.nodes.closeNavBtn.click();
+      this.nodes.brandsList.style.display = 'none';
+    }.bind(this));
+
+    arrowIcon.addEventListener('click', function() {
+      this.nodes.brandsList.style.display = 'none';
+    }.bind(this));
   },
 
   applyChangesForMobile: function() {
@@ -160,6 +217,8 @@ var UXD570 = {
       this.getNodes();
       this.applyChanges();
       this.applyChangesForMobile();
+      this.replaceCloseButtonOnMobileView();
+      this.createMobileBrandsTab();
 
       window.addEventListener('resize', this.applyChangesForMobile.bind(this));
     } else {
@@ -169,6 +228,8 @@ var UXD570 = {
         _this.getNodes();
         _this.applyChanges();
         _this.applyChangesForMobile();
+        _this.replaceCloseButtonOnMobileView();
+        _this.createMobileBrandsTab();
 
         window.addEventListener('resize', _this.applyChangesForMobile.bind(_this));
       });
