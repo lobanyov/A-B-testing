@@ -28,6 +28,10 @@ var UXD570 = {
     formInput: '.sdl-header-se_search-bar > input',
     headerSearch: '.sdl-header-se_main',
     closeNavBtn: '.js-header-mob-nav-btn-close',
+    desktopMetabarWrapper: '.sdl-header-se_metabar-wrap',
+    desktopMegamenuWrapper: '.sdl-header-se_mm-wrap',
+    schneiderLogoContainer: '.sdl-header-se_content > .se-col-md-3',
+    desktopHeaderSearch: '.sdl-header-se_search',
     mobileMetabar: '.sdl-header-se_mob-nav-metabar-site-info.js-metabar-site-info',
   },
 
@@ -42,6 +46,10 @@ var UXD570 = {
       headerSearch: document.querySelector(this.selectors.headerSearch),
       closeNavBtn: document.querySelector(this.selectors.closeNavBtn),
       mobileMetabar: document.querySelector(this.selectors.mobileMetabar),
+      desktopMetabarWrapper: document.querySelector(this.selectors.desktopMetabarWrapper),
+      desktopMegamenuWrapper: document.querySelector(this.selectors.desktopMegamenuWrapper),
+      schneiderLogoContainer: document.querySelector(this.selectors.schneiderLogoContainer),
+      desktopHeaderSearch: document.querySelector(this.selectors.desktopHeaderSearch),
     };
   },
 
@@ -147,7 +155,7 @@ var UXD570 = {
     this.nodes.headerMetabar.append(brandsTab);
   },
 
-  applyChanges: function() {
+  applyChangesForDesktop: function() {
     this.createMetabarItem();
     this.createBrandsTab();
 
@@ -196,7 +204,7 @@ var UXD570 = {
     }.bind(this));
   },
 
-  applyChangesForMobile: function() {
+  moveElementsInMobileView: function() {
     var isMobileWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < 720;
 
     if (isMobileWidth && !this.config.isMobileSearchSet) {
@@ -212,26 +220,41 @@ var UXD570 = {
     }
   },
 
+  addClassesForMetrics: function() {
+    this.nodes.desktopMetabarWrapper.classList.add('uxd-570-zone-1');
+    this.nodes.desktopMegamenuWrapper.classList.add('uxd-570-zone-2');
+    this.nodes.schneiderLogoContainer.classList.add('uxd-570-zone-2');
+    this.nodes.desktopHeaderSearch.classList.add('uxd-570-zone-3');
+
+    // add for mobile metbar
+    var mobileMetabar = document.querySelector('.sdl-header-se_mob-nav-metabar');
+    var mobileNavigation = document.querySelector('.sdl-header-se_mob-nav-l1-list');
+    mobileMetabar.classList.add('uxd-570-zone-1');
+    mobileNavigation.classList.add('uxd-570-zone-2');
+  },
+
   init: function() {
     if (document.readyState !== 'loading') {
       this.getNodes();
-      this.applyChanges();
-      this.applyChangesForMobile();
+      this.applyChangesForDesktop();
+      this.moveElementsInMobileView();
       this.replaceCloseButtonOnMobileView();
       this.createMobileBrandsTab();
+      this.addClassesForMetrics();
 
-      window.addEventListener('resize', this.applyChangesForMobile.bind(this));
+      window.addEventListener('resize', this.moveElementsInMobileView.bind(this));
     } else {
       var _this = this;
 
       window.addEventListener('load', function() {
         _this.getNodes();
-        _this.applyChanges();
-        _this.applyChangesForMobile();
+        _this.applyChangesForDesktop();
+        _this.moveElementsInMobileView();
         _this.replaceCloseButtonOnMobileView();
         _this.createMobileBrandsTab();
+        _this.addClassesForMetrics();
 
-        window.addEventListener('resize', _this.applyChangesForMobile.bind(_this));
+        window.addEventListener('resize', _this.moveElementsInMobileView.bind(_this));
       });
     }
   },
