@@ -12,12 +12,16 @@ var APCG16566 = {
   selectors: {
     searchInput: '.SearchInput_searchInput__field__1GR2l',
     searchButton: '.SearchInput_searchInput__controlButtons__3y3Zw',
+    mobileSearchInput: '.MobileSearchArea_mobileSearchArea__field__CcJHu',
+    mobileSearchButton: '.MobileSearchArea_mobileSearchArea__submit__z5yEI',
   },
 
   getNodes: function() {
     this.nodes = {
       searchInput: document.querySelector(this.selectors.searchInput),
       searchButton: document.querySelector(this.selectors.searchButton),
+      mobileSearchInput: document.querySelector(this.selectors.mobileSearchInput),
+      mobileSearchButton: document.querySelector(this.selectors.mobileSearchButton),
     };
   },
 
@@ -30,7 +34,13 @@ var APCG16566 = {
   },
 
   redirectUserToPreferredSearchPage: function() {
-    var searchValue = this.nodes.searchInput.value;
+    var searchValue;
+
+    if (this.nodes.searchInput) {
+      searchValue = this.nodes.searchInput.value;
+    } else if (this.nodes.mobileSearchInput) {
+      searchValue = this.nodes.mobileSearchInput.value;
+    }
 
     if (searchValue) {
       location.assign(
@@ -44,17 +54,25 @@ var APCG16566 = {
     }
   },
 
-  splitLogicDependingOnPage: function() {
-    if (this.config.isHomePage) {
-      this.nodes.searchButton.addEventListener('click', this.redirectUserToPreferredSearchPage.bind(this));
+  addListeners: function(btn, input, context) {
+    function keydownHandler(e) {
+      if (e.keyCode === context.config.enterCode && input.contains(document.activeElement)) {
+        context.redirectUserToPreferredSearchPage();
+      }
+    }
 
-      window.addEventListener('keydown', function(e) {
-        if (e.keyCode === this.config.enterCode && this.nodes.searchInput.contains(document.activeElement)) {
-          this.redirectUserToPreferredSearchPage();
-        }
-      }.bind(this));
-    } else {
-      // to be written...
+    btn.addEventListener('click', context.redirectUserToPreferredSearchPage.bind(context));
+    window.addEventListener('keydown', keydownHandler);
+    window.addEventListener('keypress', keydownHandler);
+  },
+
+  splitLogicDependingOnPage: function() {
+    if (!this.config.isHomePage) return;
+
+    if (this.nodes.searchInput && this.nodes.searchButton && !this.config.isListenersAddedForDesktop) {
+      this.addListeners(this.nodes.searchButton, this.nodes.searchInput, this);
+    } else if (this.nodes.mobileSearchButton && this.nodes.mobileSearchButton && !this.config.isListenersAddedForMobile) {
+      this.addListeners(this.nodes.mobileSearchButton, this.nodes.mobileSearchInput, this);
     }
   },
 
@@ -63,7 +81,6 @@ var APCG16566 = {
       this.getNodes();
       this.definePage();
       this.splitLogicDependingOnPage();
-      // this.addClassesForMetrics();
     } else {
       var _this = this;
 
@@ -71,7 +88,6 @@ var APCG16566 = {
         _this.getNodes();
         _this.definePage();
         _this.splitLogicDependingOnPage();
-        // _this.addClassesForMetrics();
       });
     }
   },
