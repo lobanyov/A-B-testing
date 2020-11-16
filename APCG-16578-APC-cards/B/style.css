@@ -1,0 +1,27 @@
+.apcg-16578-wrapper {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.apcg-16578-wrapper div span:first-child {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.apcg-16578-wrapper div span:last-child {
+  display: block;
+  font-size: 12px;
+  color: #666;
+}
+
+.apcg-16578-doc-tab {
+  font-size: 14px;
+  color: #42b4e6;
+}
+
+.apcg-16578-doc-tab:hover {
+  cursor: pointer;
+}
