@@ -91,6 +91,10 @@ var APCG16578 = {
     productContent: '.result-list__item-product-content',
     itemTag: '.result-list__item-tag',
     skuNumber: '.result-list__item-sku-number',
+    productWrapper: '.result-list__item-inner',
+    imgLink: '.result-list__item-pic',
+    resultTitle: '.result-list__item-title',
+    downloadBtn: '.download-btn',
   },
 
   getNodes: function() {
@@ -174,15 +178,29 @@ var APCG16578 = {
     documentsTab.onselectstart = function() { return false; };
   },
 
+  setSpecificClasses: function(element) {
+    var productWrapper = element.closest(this.selectors.productWrapper);
+    if (productWrapper) {
+      var imgLink = productWrapper.querySelector(this.selectors.imgLink);
+      var resultTitle = productWrapper.querySelector(this.selectors.resultTitle);
+      var downloadBtn = productWrapper.querySelector(this.selectors.downloadBtn);
+
+      imgLink.classList.add('apcg-16578-doc-link');
+      resultTitle.classList.add('apcg-16578-doc-link');
+      downloadBtn.classList.add('apcg-16578-download-btn');
+    }
+  },
+
   searchCards: function() {
     if (this.nodes.titles) {
       this.nodes.titles.forEach(function(title) {
         if (title.innerText === this.cards.SFPCBE1001.title) {
           this.createNewNodes('SFPCBE1001', title);
-        }
+          this.setSpecificClasses(title);
 
-        if (title.innerText === this.cards.SFPCBE95.title) {
+        } else if (title.innerText === this.cards.SFPCBE95.title) {
           this.createNewNodes('SFPCBE95', title);
+          this.setSpecificClasses(title);
         }
       }.bind(this));
     }
