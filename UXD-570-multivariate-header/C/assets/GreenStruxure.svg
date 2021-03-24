@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="170px" height="50px" viewBox="0 0 170 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Logos / Text / GreenStruxure</title>
+    <g id="Logos-/-Text-/-GreenStruxure" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="ArialRoundedMTforSE-Bold, Arial Rounded MT for SE" font-weight="bold">
+        <text id="GreenStruxure" font-size="24" letter-spacing="-0.632" fill="#FFFFFF">
+            <tspan x="-1" y="33">Green</tspan>
+            <tspan x="67.768" y="33" letter-spacing="-0.932">S</tspan>
+            <tspan x="82.844" y="33" letter-spacing="-0.232">t</tspan>
+            <tspan x="91.108" y="33" letter-spacing="-0.032">r</tspan>
+            <tspan x="100.988" y="33">uxure</tspan>
+        </text>
+        <text id="™" font-size="8" letter-spacing="-0.210666667" fill="#FFFFFF">
+            <tspan x="162" y="25">™</tspan>
+        </text>
+    </g>
+</svg>
